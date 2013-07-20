@@ -19,11 +19,11 @@ class Seeder
 
   def create_event
     event = Event.create(type: events[Random.rand(0..3)])
-    event.users << User.first
+    event.users << User.last
 
     case event.type
     when "high-five-another-user"
-      event.users << User.last
+      event.users << User.skip(1).last
     when "comment"
       comment       = create_comment
       event.comment = comment
