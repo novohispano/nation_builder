@@ -20,9 +20,21 @@ class Seeder
   def create_event
     event = Event.create(type: events[Random.rand(0..3)])
     event.users << User.first
-    event.users << User.last if event.type == "high-five-another-user"
+
+    case event.type
+    when "high-five-another-user"
+      event.users << User.last
+    when "comment"
+      comment       = create_comment
+      event.comment = comment
+      puts "Created comment #{comment.message}"
+    end
 
     puts "Created event #{event.id}"
+  end
+
+  def create_comment
+    Comment.create(message: Faker::Lorem.sentence)
   end
 
   def events
