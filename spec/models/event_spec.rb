@@ -23,7 +23,18 @@ describe Event do
       event.users << user
       result = event.users.first
 
+      expect(result).not_to be_nil
       expect(result).to eq user
+    end
+
+    it "creates an event with a comment" do
+      event         = create_event
+      comment       = Comment.create(message: "This is a comment.")
+      event.comment = comment
+      result        = event.comment
+
+      expect(result).not_to be_nil
+      expect(result).to eq comment
     end
   end
 end

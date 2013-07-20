@@ -5,4 +5,5 @@ class Comment
   field :message
 
   belongs_to :user
+  belongs_to :event
 end
