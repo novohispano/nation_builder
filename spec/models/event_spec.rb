@@ -2,8 +2,15 @@ require 'spec_helper'
 
 describe Event do
   context "When given the correct parameters" do
+    def create_event(type = "enter-the-room")
+      Event.create(
+        action: "enters",
+        type: type
+        )
+    end
+
     it "creates an event" do
-      result = Event.create(action: "enters")
+      result = create_event
 
       expect(result).not_to be_nil
       expect(result).to be_valid
@@ -13,7 +20,7 @@ describe Event do
 
     it "creates an event with a user" do
       user   = User.create(name: "Jorge")
-      event  = Event.create(action: "enters")
+      event  = create_event
       event.users << user
       result = event.users.first
 
