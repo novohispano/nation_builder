@@ -5,4 +5,5 @@ class User
   field :name
 
   has_and_belongs_to_many :events
+  has_many :comments
 end

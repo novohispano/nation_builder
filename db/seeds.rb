@@ -1,8 +1,9 @@
 class Seeder
   def create_data
-    500.times do
+    100.times do
       create_user
       create_event
+      sleep(Random.rand(1..5))
     end
   end
 
@@ -19,7 +20,6 @@ class Seeder
   def create_event
     event = Event.create(type: events[Random.rand(0..3)])
     event.users << User.first
-
     event.users << User.last if event.type == "high-five-another-user"
 
     puts "Created event #{event.id}"

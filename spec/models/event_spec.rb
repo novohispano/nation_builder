@@ -14,7 +14,7 @@ describe Event do
       expect(result).not_to be_nil
       expect(result).to be_valid
       expect(result.class).to be Event
-      expect(result.action).to eq "enters"
+      expect(result.type).to eq "enter-the-room"
     end
 
     it "creates an event with a user" do

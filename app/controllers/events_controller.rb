@@ -1,5 +1,5 @@
 class EventsController < ApplicationController
   def index
-    @events = Event.all.desc(:created_at)
+    @events = Event.all.asc(:created_at)
   end
 end
