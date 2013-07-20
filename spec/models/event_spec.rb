@@ -4,7 +4,6 @@ describe Event do
   context "When given the correct parameters" do
     def create_event(type = "enter-the-room")
       Event.create(
-        action: "enters",
         type: type
         )
     end

@@ -12,6 +12,7 @@ gem 'bson_ext'
 gem 'bootstrap-sass'
 gem 'haml-rails'
 gem 'haml'
+gem 'faker'
 
 group :test do
   gem 'database_cleaner'

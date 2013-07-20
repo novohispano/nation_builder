@@ -1,7 +1,38 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
-#
-# Examples:
-#
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
+class Seeder
+  def create_data
+    500.times do
+      create_user
+      create_event
+    end
+  end
+
+  private
+
+  def create_user
+    first_name = Faker::Name.first_name
+    last_name  = Faker::Name.last_name
+
+    user = User.create(name: "#{first_name} #{last_name}")
+    puts "Created user #{user.name}"
+  end
+
+  def create_event
+    event = Event.create(type: events[Random.rand(0..3)])
+    event.users << User.first
+
+    event.users << User.last if event.type == "high-five-another-user"
+
+    puts "Created event #{event.id}"
+  end
+
+  def events
+    [
+      "enter-the-room",
+      "leave-the-room",
+      "comment",
+      "high-five-another-user"
+    ]
+  end
+end
+
+Seeder.new.create_data
