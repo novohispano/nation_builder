@@ -1,7 +1,9 @@
 .container
-  - @events.each do |event|
+  %h4 ACTIVITY FEED
+  .row
+  %p Information by Hour / #{link_to "Information by Minute", root_path}
+  - @event_collections.each do |collection|
     %hr
-    %p #{event[0]}:
-    - events_by_type = event[1].group_by { |event| event.type }
-    - events_by_type.each do |event_type, events|
-      %p= build_events_by_hour(event_type, events)
+    %p #{collection[0]}:
+    - group_events_by_type(collection[1]).each do |event_type, events|
+      %p= build_events_by_type(event_type, events)

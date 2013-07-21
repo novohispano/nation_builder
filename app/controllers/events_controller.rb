@@ -4,8 +4,6 @@ class EventsController < ApplicationController
   end
 
   def index_by_hour
-    @events = Event.all.asc(:created_at).group_by do |event|
-      event.created_at.localtime.strftime("%B %d, %Y - %l %p")
-    end
+    @event_collections = Event.by_hour
   end
 end

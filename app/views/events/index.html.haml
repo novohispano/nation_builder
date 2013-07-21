@@ -1,3 +1,5 @@
 .container
+  %h4 ACTIVITY FEED
+  %p #{link_to "Information by Hour", by_hour_path} / Information by Minute
   - @events.each do |event|
-    .p= raw build_event(event)
+    .p= build_event(event)
