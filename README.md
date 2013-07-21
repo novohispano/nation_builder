@@ -2,8 +2,6 @@
 
 This project is my solution to NationBuilder's Programmer Challenge.
 
-### Installation
-
 1. Clone this repo.
 2. Bundle the gems / bundle install
 3. Make sure you have MongoDB installed and running.
