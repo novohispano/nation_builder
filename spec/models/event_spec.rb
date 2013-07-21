@@ -38,18 +38,18 @@ describe Event do
 
   it "groups the events by hour" do
     Event.create(
-      created_at: Time.parse("2013-07-20 23:50:20 UTC")
+      created_at: Time.parse("2013-07-20 23:50:20 MST")
       )
     Event.create(
-      created_at: Time.parse("2013-07-20 21:46:16 UTC")
+      created_at: Time.parse("2013-07-20 21:46:16 MST")
       )
     Event.create(
-      created_at: Time.parse("2013-07-20 21:20:10 UTC")
+      created_at: Time.parse("2013-07-20 21:20:10 MST")
       )
 
     result = Event.by_hour
-    expect(result.keys).to eq ["July 20, 2013 -  9 PM", "July 20, 2013 - 11 PM"]
-    expect(result["July 20, 2013 -  9 PM"].size).to eq 2
-    expect(result["July 20, 2013 - 11 PM"].size).to eq 1
+    expect(result.keys).to eq ["July 20, 2013 - 10 PM", "July 21, 2013 - 12 AM"]
+    expect(result["July 20, 2013 - 10 PM"].size).to eq 2
+    expect(result["July 21, 2013 - 12 AM"].size).to eq 1
   end
 end
