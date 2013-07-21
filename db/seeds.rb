@@ -3,7 +3,6 @@ class Seeder
     100.times do
       create_user
       create_event
-      sleep(Random.rand(1..5))
     end
   end
 
@@ -18,7 +17,11 @@ class Seeder
   end
 
   def create_event
-    event = Event.create(type: events[Random.rand(0..3)])
+    event = Event.create(
+      type:       events[Random.rand(0..3)],
+      created_at: Time.parse("2013-07-20 #{Random.rand(0..23)}:#{Random.rand(0..59)}:#{Random.rand(0..59)} UTC")
+      )
+
     event.users << User.last
 
     case event.type
