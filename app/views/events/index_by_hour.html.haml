@@ -1,0 +1,7 @@
+.container
+  - @events.each do |event|
+    %hr
+    %p #{event[0]}:
+    - events_by_type = event[1].group_by { |event| event.type }
+    - events_by_type.each do |event_type, events|
+      %p= build_events_by_hour(event_type, events)
