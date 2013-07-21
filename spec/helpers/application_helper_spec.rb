@@ -50,5 +50,58 @@ describe ApplicationHelper do
 
       expect(result).to eq "July 20, 2013 - 12:32 PM: Ana high-fives Jorge"
     end
+
+    it "builds a enter-the-room grouped event" do
+      event_1 = create_event("enter-the-room")
+      event_2 = create_event("enter-the-room")
+      events  = []
+      events.push(event_1, event_2)
+      result  = build_events_by_type("enter-the-room", events)
+
+      expect(result).to eq "2 people entered."
+    end
+
+    it "builds a leave-the-room grouped event" do
+      event_1 = create_event("leave-the-room")
+      event_2 = create_event("leave-the-room")
+      events  = []
+      events.push(event_1, event_2)
+      result  = build_events_by_type("leave-the-room", events)
+
+      expect(result).to eq "2 people left."
+    end
+
+    it "builds a leave-the-room grouped event" do
+      event_1 = create_event("comment")
+      event_2 = create_event("comment")
+      events  = []
+      events.push(event_1, event_2)
+      result  = build_events_by_type("comment", events)
+
+      expect(result).to eq "2 comments."
+    end
+
+    it "builds a high-five-another-user grouped event" do
+      event_1 = create_event("high-five-another-user")
+      event_2 = create_event("high-five-another-user")
+      events  = []
+      events.push(event_1, event_2)
+      result  = build_events_by_type("high-five-another-user", events)
+
+      expect(result).to eq "2 people high-fived 2 other people."
+    end
+
+    it "groups events by type" do
+      event_1 = create_event("high-five-another-user")
+      event_2 = create_event("high-five-another-user")
+      event_3 = create_event("comment")
+      events  = []
+      events.push(event_1, event_2, event_3)
+      result  = group_events_by_type(events)
+
+      expect(result.keys).to eq ["high-five-another-user", "comment"]
+      expect(result["high-five-another-user"].count).to eq 2
+      expect(result["comment"].count).to eq 1
+    end
   end
 end

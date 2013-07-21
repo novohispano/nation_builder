@@ -9,7 +9,7 @@ class Event
 
   def self.by_hour
     self.all.asc(:created_at).group_by do |event|
-      event.created_at.localtime.strftime("%B %d, %Y - %l %p")
+      event.created_at.strftime("%B %d, %Y - %l %p")
     end
   end
 end
